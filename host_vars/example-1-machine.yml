@@ -1,0 +1,4 @@
+---
+interface_name: "enp0s8"
+interface_ip: "192.168.58.101"
+interface_mask: "255.255.255.0"
