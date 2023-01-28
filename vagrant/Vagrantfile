@@ -1,0 +1,42 @@
+VAGRANT_EXPERIMENTAL="disks"
+
+machines = {
+  "gateway-machine" => {
+    "cpu" => "2",
+    "memory" => "512",
+    "subnet_ip" => "254"
+  },
+  "example-1-machine" => {
+    "cpu" => "2",
+    "memory" => "512",
+    "subnet_ip" => "101"
+  },
+  "example-2-machine" => {
+    "cpu" => "2",
+    "memory" => "512",
+    "subnet_ip" => "111"
+  }
+}
+
+Vagrant.configure("2") do |config|
+  machines.each do |name,conf|
+    config.vm.define "#{name}" do |machine|
+      machine.vm.hostname = "#{name}"
+      machine.vm.provider "virtualbox" do |vb|
+        vb.name = "#{name}"
+        vb.memory = conf["memory"]
+        vb.cpus = conf["cpu"]
+      end
+      if "#{name}" == "gateway-machine"
+        machine.vm.box = "generic/centos8"
+        machine.vm.box_version = "4.1.6"
+        machine.vm.network "private_network", ip: "192.168.58.#{conf["subnet_ip"]}"
+      end
+      if "#{name}" == "example-1-machine" || "#{name}" == "example-2-machine"
+        machine.vm.box = "ubuntu/focal64"
+        machine.vm.box_version = "20220815.0.0"
+        machine.vm.network "private_network", ip: "192.168.58.#{conf["subnet_ip"]}"
+      end
+    end
+  end
+end
