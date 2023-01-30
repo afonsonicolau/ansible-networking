@@ -1,0 +1,9 @@
+---
+- name: Configure the machines network
+  hosts: all
+
+  become: true
+
+  tasks:
+    - name: Change routing table configuration
+      nmcli:
