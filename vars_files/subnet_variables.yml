@@ -1,4 +1,0 @@
----
-subnet_name: "private_subnet"
-subnet_network: "192.168.58.0"
-subnet_prefix: 24
