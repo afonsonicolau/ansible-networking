@@ -1,0 +1,7 @@
+- name: Install BIND9
+  package:
+    name:
+      - bind
+      - bind-utils
+    state: present
+  notify: Restart BIND9

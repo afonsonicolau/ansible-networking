@@ -1,0 +1,6 @@
+---
+# handlers file for dns-role
+- name: Restart BIND9
+  service:
+    name: named
+    state: restarted

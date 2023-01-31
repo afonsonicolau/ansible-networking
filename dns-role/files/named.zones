@@ -1,0 +1,11 @@
+zone "example.com" IN {
+        type master;
+        file "fwd.example.com.db";
+        allow-update { none; };
+};
+
+zone "58.168.192.in-addr.arpa" IN {
+        type master;
+        file "rev.58.168.192.db";
+        allow-update { none; };
+};

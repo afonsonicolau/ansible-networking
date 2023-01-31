@@ -1,0 +1,14 @@
+---
+# tasks file for bind9-role
+- name: Replace files with the DNS configuration
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: named
+    owner: named
+  with_items:
+    - { src: "../files/named.conf", dest: "/etc/named.conf"}
+    - { src: "../files/named.zones", dest: "/etc/named.rfc1912.zones"}
+    - { src: "../files/fwd.example.com.db", dest: "/var/named/fwd.example.com.db"}
+    - { src: "../files/rev.58.168.192.db", dest: "/var/named/rev.58.168.192.db"}
+  notify: Restart BIND9
