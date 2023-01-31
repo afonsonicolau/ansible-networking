@@ -1,0 +1,3 @@
+---
+# tasks file for resolvconf-role
+- include: configure.yml
