@@ -1,0 +1,16 @@
+$TTL 86400
+@	IN	SOA     gateway-machine.example.com. root.example.com. (
+        5; Serial
+        6048000; Refresh
+        86400; Retry
+        2419200; Expire
+        86400; Negative Cache TTL
+)
+
+@	IN	NS	gateway-machine.example.com.
+
+gateway-machine.example.com.	IN	A	192.168.58.254
+
+254	IN	PTR	gateway-machine.example.com.
+101     IN	PTR	example-1-machine.example.com.
+111     IN	PTR	example-2-machine.example.com.
