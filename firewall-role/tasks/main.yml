@@ -1,0 +1,3 @@
+---
+# tasks file for firewall-role
+- include: configure.yml
