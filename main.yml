@@ -17,3 +17,12 @@
     - name: Change default gateway
       shell: "ip route add {{ item.ipv4 }} via {{ item.gw4 }} dev {{ item.device }}"
       loop: "{{ gateway_settings }}"
+
+    - name: Configure BIND9
+      include_role:
+        name: dns-role
+      when: inventory_hostname == 'gateway-machine'
+
+    - name: Configure resolvconf
+      include_role:
+        name: resolvconf-role
