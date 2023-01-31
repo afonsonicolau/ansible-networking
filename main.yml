@@ -5,5 +5,15 @@
   become: true
 
   tasks:
-    - name: Change routing table configuration
-      nmcli:
+    - name: Configure firewalld
+      include_role:
+        name: firewall-role
+      when: inventory_hostname == 'gateway-machine'
+
+    - name: Delete default route
+      shell: "ip route delete {{ item.ipv4 }}"
+      loop: "{{ gateway_settings }}"
+
+    - name: Change default gateway
+      shell: "ip route add {{ item.ipv4 }} via {{ item.gw4 }} dev {{ item.device }}"
+      loop: "{{ gateway_settings }}"
