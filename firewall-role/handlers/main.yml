@@ -1,0 +1,4 @@
+---
+# handlers file for firewall-role
+- name: Reload firewalld to enable configuration
+  command: firewall-cmd --reload
