@@ -1,0 +1,6 @@
+---
+# handlers file for resolvconf-role
+- name: Restart resolvconf service
+  service:
+    name: resolvconf
+    state: restarted
